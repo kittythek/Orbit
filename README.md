@@ -1,165 +1,29 @@
-<div align="center">
-<img src="build/icon.png" width="128" alt="Orbit icon">
-   
 Orbit
-   
-Your operating system's logo, spinning in 3D, with live diagnostics.
-
-![Latest release](https://img.shields.io/github/v/release/kittythek/orbit?style=flat-square&color=4fd8ff)
-   
-![Downloads](https://img.shields.io/github/downloads/kittythek/orbit/total?style=flat-square&color=9a7bff)
-
-![Platforms](https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-0b1224?style=flat-square)
-
-Download · Donate / Linktree · Kitty's Github
-
-</div>
-
-<!-- Add a screenshot: save one as screenshot.png in the repo, then delete the comment markers around the next line.
-![Orbit](screenshot.png)
-What it is
-Orbit shows the logo of the system you're running as a glowing 3D shape that spins on its own. Drag it to spin it yourself. Next to it, live diagnostics update in real time: CPU, memory, storage, uptime, kernel, architecture, host name, network address, load and battery.
-Orbit reads everything locally. It never sends data anywhere.
-Pick your system
-I'm on...	Jump to
-Windows 10 or 11	Windows
-A Mac (Apple Silicon or Intel)	macOS
-Linux	Linux
-The file you want is on the Releases page, under Assets. There are three zips, one per system. Download only the one for your system.
----
-Windows
-Steps
-Open the Releases page.
-Under Assets, click `Orbit-x.x.x-windows.zip` to download it.
-Open your Downloads folder, right-click the zip, and choose Extract All, then click Extract.
-Open the new folder and double-click `Orbit.exe`.
-If something goes wrong
-A blue box says "Windows protected your PC".
-Windows shows this for any app from a developer it doesn't recognize yet. See Why you see warnings. Click More info, then Run anyway. You only need to do this once.
-Nothing happens when I double-click.
-You're probably opening it from inside the zip. Windows lets you peek inside zips, but the app can't run from there. Close that window and do step 3 (Extract All) first.
-My antivirus deleted or blocked it.
-Antivirus tools are cautious with new, unsigned apps. Open your antivirus, restore the file from quarantine, and allow it. The full source code is in this repo, so you can read exactly what it does.
-The zip won't extract or says it's corrupt.
-The download was probably cut off. Delete it and download it again.
-The window is black or flickers.
-Update your graphics driver, then restart Orbit.
----
-macOS
-Steps
-Open the Releases page.
-Under Assets, click `Orbit-x.x.x-mac.zip` to download it. One download works on both Apple Silicon and Intel Macs.
-Open your Downloads folder and double-click the zip. It unpacks into Orbit.app.
-Drag Orbit.app into your Applications folder.
-Right-click (or hold Control and click) Orbit.app, choose Open, then click Open again.
-You only need step 5 the first time. After that, open Orbit normally.
-If something goes wrong
-"Orbit cannot be opened because Apple cannot check it for malicious software."
-See Why you see warnings. Fix it like this:
-Click Done (or Cancel) on the message.
-Open System Settings, then Privacy & Security.
-Scroll down to the Security section. You'll see a message about Orbit being blocked.
-Click Open Anyway and enter your Mac password.
-Click Open on the last box.
-On macOS 15 (Sequoia) and newer, this settings route is the only way. The right-click trick from step 5 only works on older versions.
-"Orbit is damaged and can't be opened."
-The app isn't damaged. macOS puts a "downloaded from the internet" tag on files, and this message is what it shows when that tag meets an unsigned app. Remove the tag:
-Press Cmd + Space, type `Terminal`, and press Return.
-Type `xattr -cr ` (with a space after it). Don't press Return yet.
-Drag Orbit.app from your Applications folder into the Terminal window. Its path appears.
-Press Return, then open Orbit again.
-I can't find Orbit.app after downloading.
-Check your Downloads folder. If you only see the zip, double-click it to unpack it.
----
-Linux
-Steps
-Open the Releases page.
-Under Assets, click `Orbit-x.x.x-linux.zip` to download it.
-Open your file manager, right-click the zip, and choose Extract Here.
-Open the new folder and double-click the file named `orbit`. If asked, choose Run.
-Prefer the terminal? These do the same thing:
+A spinning 3D logo of your operating system with live diagnostics. It shows the Windows, macOS or Linux distro logo you're actually running, extruded and rotating, next to live CPU, memory, storage, uptime, kernel, network and battery readouts.
+Works on Windows, macOS and Linux. Drag the logo to spin it. Click anywhere to skip the boot animation.
+Download
+Grab the zip for your system from Releases, unzip it, and run it.
+System	File	Unzip, then
+Windows	`Orbit-x.x.x-windows.zip`	Open the folder and double-click `Orbit.exe`. If SmartScreen appears: More info → Run anyway.
+macOS	`Orbit-x.x.x-mac.zip`	Double-click `Orbit.app`. First launch: right-click → Open. If macOS says it's "damaged", run `xattr -cr Orbit.app` in Terminal and open it again.
+Linux	`Orbit-x.x.x-linux.zip`	Open the folder and double-click `orbit` (choose "Run"). If nothing happens, run `chmod +x orbit && ./orbit` in a terminal.
+The warnings appear because the builds aren't code-signed. Signing needs paid certificates (Apple Developer ID, Windows code-signing).
+Run from source
 ```bash
-cd ~/Downloads
-unzip Orbit-*-linux.zip -d Orbit
-cd Orbit
-./orbit
+npm install
+npm start
 ```
-If something goes wrong
-Nothing happens when I double-click `orbit`.
-Some file managers don't run programs on double-click, or the file lost its permission to run. Open a terminal in the folder and run:
+Build and publish with GitHub Actions
+Create a GitHub repo named `orbit` (or edit `repository` in `package.json`) and push this folder.
+Tag a release:
 ```bash
-chmod +x orbit
-./orbit
-```
-`chmod +x` marks the file as a program. Any error messages will show in the terminal, which helps a lot if you need to ask for help.
-"error while loading shared libraries..."
-Your system is missing a common library that apps like this need. Install them:
-```bash
-# Ubuntu, Debian, Linux Mint, Pop!_OS
-sudo apt install libgtk-3-0 libnss3 libgbm1 libasound2
-# On Ubuntu 24.04 and newer, use libasound2t64 instead of libasound2
-
-# Fedora
-sudo dnf install gtk3 nss mesa-libgbm alsa-lib
-```
-Then run `./orbit` again.
-The window is blank, black, or glitchy.
-Your graphics setup may not like hardware drawing. Try:
-```bash
-./orbit --disable-gpu
-```
-Orbit shows a penguin instead of my distro's logo.
-Orbit has its own logos for Ubuntu, Debian, Arch, Fedora and Linux Mint. Every other distro gets the penguin, but your distro's real name and version still show underneath.
----
-Why you see warnings
-Apps from big publishers carry a paid "digital signature" from Windows or Apple, a bit like a stamp from a known sender. Orbit is free and independent, so it doesn't have one yet. Your system can't recognize the sender and warns you, even though nothing is wrong with the file.
-Only download Orbit from this page's Releases. If you downloaded it from somewhere else, don't run it.
-Controls
-Action	What it does
-Drag the logo	Spin and tilt it
-Click or press any key during boot	Skip the boot animation
----
-For developers
-You don't need any of this to just use Orbit.
-Get the code with Git
-Git is the tool that copies a project from GitHub to your computer.
-Install Git: download it from git-scm.com, or on Mac run `brew install git`, or on Linux run `sudo apt install git`.
-Install Node.js (the LTS version) from nodejs.org. Orbit needs it to run from source.
-Open a terminal. On Windows, search for "Command Prompt". On Mac, search for "Terminal".
-Copy the project to your computer:
-```bash
-   git clone https://github.com/kittythek/orbit.git
+   git tag v1.0.0
+   git push origin v1.0.0
    ```
-This makes a folder called `orbit`.
-Go into the folder:
-```bash
-   cd orbit
-   ```
-Install what Orbit depends on (this takes a minute):
-```bash
-   npm install
-   ```
-Start it:
-```bash
-   npm start
-   ```
-Build the zips
-```bash
-npm run dist
-```
-The zip for your current system appears in a new `dist` folder. To build all three systems at once, push a version tag and GitHub builds them for you:
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-```
-The recipe is in `.github/workflows/build.yml`. When it finishes (about 5 to 10 minutes), the zips appear on your Releases page.
+The workflow in `.github/workflows/build.yml` builds Windows, macOS and Linux and attaches them to a draft release. Open it on GitHub and click Publish release.
+You can also run the workflow by hand from the Actions tab to get the builds as downloadable artifacts.
 Customize
-What	Where
-OS logos	`LOGOS` in `app.js`
-Accent color per system	`COLORS` in `app.js`
-Look and animation	`style.css`
-App icon	`build/icon.png` (1024x1024)
----
-Support
-If you like Orbit, you can support it here: Donate / Linktree
-Made by Kitty.
+Logos live in `app.js` (`LOGOS`). Linux distro marks are simplified, so swap in official SVGs if you want exact brand shapes.
+Accent colors per OS are in `COLORS`.
+Icon source: `build/icon.png` (1024×1024).
+Links in the app: Donate / Linktree · Kitty's Github
