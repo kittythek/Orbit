@@ -1,12 +1,20 @@
 <div align="center">
 <img src="build/icon.png" width="128" alt="Orbit icon">
+   
 Orbit
+   
 Your operating system's logo, spinning in 3D, with live diagnostics.
+
 ![Latest release](https://img.shields.io/github/v/release/kittythek/orbit?style=flat-square&color=4fd8ff)
+   
 ![Downloads](https://img.shields.io/github/downloads/kittythek/orbit/total?style=flat-square&color=9a7bff)
+
 ![Platforms](https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-0b1224?style=flat-square)
+
 Download · Donate / Linktree · Kitty's Github
+
 </div>
+
 <!-- Add a screenshot: save one as screenshot.png in the repo, then delete the comment markers around the next line.
 ![Orbit](screenshot.png)
 What it is
