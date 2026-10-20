@@ -1,0 +1,76 @@
+{
+  "name": "orbit",
+  "productName": "Orbit",
+  "version": "1.0.0",
+  "description": "A spinning 3D logo of your operating system with live diagnostics. Windows, macOS and Linux.",
+  "main": "main.js",
+  "author": "kittythek",
+  "license": "MIT",
+  "repository": "github:kittythek/orbit",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.kittythek.orbit",
+    "productName": "Orbit",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "style.css",
+      "app.js",
+      "build/icon.png"
+    ],
+    "publish": {
+      "provider": "github"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "artifactName": "Orbit-${version}-windows.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.utilities",
+      "identity": "-",
+      "artifactName": "Orbit-${version}-mac.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "executableName": "orbit",
+      "artifactName": "Orbit-${version}-linux.${ext}"
+    }
+  }
+}
