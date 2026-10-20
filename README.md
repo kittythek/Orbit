@@ -3,8 +3,11 @@
 Orbit
 Your operating system's logo, spinning in 3D, with live diagnostics.
 ![Latest release](https://github.com/kittythek/orbit/releases/latest)
+   
 ![Downloads](https://github.com/kittythek/orbit/releases)
+
 ![Platforms](https://img.shields.io/badge/Windows%20%7C%20macOS%20%7C%20Linux-0b1224?style=flat-square)
+
 Download · Donate / Linktree · Kitty's Github
 </div>
 <!-- Add a screenshot: save one as screenshot.png in the repo, then delete the comment markers around the next line.
